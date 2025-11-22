@@ -1,17 +1,34 @@
 from textnode import TextNode, TextType
 from fs_utils import copy_contents
+from page_handler import generate_pages_recursive
+import os
 
 # from htmlnode import HTMLNode
 
+PROJECT_ROOT = r"/home/pedrotorreao/Documents/Projects/bootdev/genstatic"
+
 
 def main():
-    tn = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev")
-    # print(tn)
 
     src_path = r"/home/pedrotorreao/Documents/Projects/bootdev/genstatic/static"
     dst_path = r"/home/pedrotorreao/Documents/Projects/bootdev/genstatic/public"
 
     copy_contents(src_path, dst_path)
+
+    src_path = os.path.join(PROJECT_ROOT, "content")
+    dst_path = os.path.join(PROJECT_ROOT, "public")
+    template_path = os.path.join(PROJECT_ROOT, "template.html")
+
+    generate_pages_recursive(src_path, template_path, dst_path)
+
+    # src_path = os.path.join(PROJECT_ROOT, "content/index.md")
+    # dst_path = os.path.join(PROJECT_ROOT, "public/index.html")
+    # template_path = os.path.join(PROJECT_ROOT, "template.html")
+
+    # generate_page_(src_path, template_path, dst_path)
+
+    # tn = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev")
+    # print(tn)
 
     # hn = HTMLNode("a", "search", None, {"href": "https://www.google.com","target": "_blank"})
     # print(hn)
