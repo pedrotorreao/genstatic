@@ -30,5 +30,3 @@ def copy_contents(src_path, dest_path):
             # add them to the list of all files to be copied:
             all_files.extend([os.path.join(file, f) for f in more_files])
             print(all_files)
-        # delete copied files from the list:
-        # all_files.remove(file)
